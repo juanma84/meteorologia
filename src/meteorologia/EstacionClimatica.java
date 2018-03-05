@@ -12,7 +12,7 @@ public class EstacionClimatica {
 	// instance variables - replace the example below with your own
 	
     private String nombre;
-    private int año;
+    private int anio;
     private temphumdia mediciones[];  // Tabla de mediciones
     private int nummediciones;      // N�mero de mediciones almacenadas
 
@@ -24,27 +24,26 @@ public class EstacionClimatica {
    
     {
          this.nombre = "";
-         this.año = 2000;  
+         this.anio = 2000;  
          mediciones = new temphumdia[366];  // Por si el a�o es bisiesto.  
          nummediciones = 0;
     }
     /**
      * Constructor con parametros
-     * @param nombre
-     * @param a�o
+     * @param nombre del objeto 
+     * @param anio del objeto
      */
-    public EstacionClimatica( String nombre, int anyo)
+    public EstacionClimatica( String nombre, int anio)
     {
          this(); // Llamo al constructor por defecto
          this.nombre = nombre;
-         this.año = anyo;
+         this.anio = anio;
          
     }
     /**
-     * si el a�o de la fecha
-		corresponde con el a�o de la estaci�n, introduce el nuevo objeto en el vector
-     * @param media
-     * @return true si el a�o coincide y false si el a�o no coincide
+     * para introducir al dia datos si no hay nada
+     * @param media Vector de temperaturas
+     * @return true si se puede meter valor false caso contrario
      */
     public boolean addDia ( temphumdia media){
     	boolean metido=true;
@@ -62,11 +61,10 @@ public class EstacionClimatica {
     	}
         return metido; 
     }
-    /*Un m�todo DelDia, que reciba una fecha y borre ese d�a si existen datos.*/
     /**
-     * reciba una fecha y borre ese d�a si existen datos
-     * @param media
-     * @return true si ese dia ya estaba relleno, false en caso contrario
+     * 
+     * @param media vector de temphumdia
+     * @return true si existe false caso contrario
      */
     public boolean delDia ( temphumdia media){
     	boolean existe=true;
@@ -109,7 +107,7 @@ humedad m�xima, m�nima y media.
      * @param a�o
      * @return true si la fecha es correcta y false en caso contrario
      */
-    static boolean fechaOK ( int dia, int mes, int año){
+    static boolean fechaOK ( int dia, int mes, int anio){
     	boolean fecha=true;
         if(dia<=30 && (mes==4||mes==6||mes==9||mes==11)) {
         	fecha=true;
@@ -133,21 +131,21 @@ humedad m�xima, m�nima y media.
     static temphumdia leerMedida () {
 
         Scanner leer = new Scanner(System.in);
-        int dia,mes,año, tempmax, tempmin, hummax, hummin;
+        int dia,mes,anio, tempmax, tempmin, hummax, hummin;
         temphumdia  medicion = null;
         
        boolean error = true;
        do {
        System.out.println("Dia:"); dia = leer.nextInt();
        System.out.println("Mes:");  mes = leer.nextInt();
-       System.out.println("Año:");  año = leer.nextInt();
+       System.out.println("Año:");  anio = leer.nextInt();
  
-       if ( fechaOK( dia,mes,año) ) {
+       if ( fechaOK( dia,mes,anio) ) {
             System.out.println ( " T� M�xima:"); tempmax = leer.nextInt();
             System.out.println ( " T� M�nima:"); tempmin = leer.nextInt();
             System.out.println ( " H� M�xima:"); hummax = leer.nextInt();
             System.out.println ( " H� M�nima:"); hummin = leer.nextInt();
-            medicion = new temphumdia ( dia,mes,año, tempmax, tempmin, hummax, hummin);
+            medicion = new temphumdia ( dia,mes,anio, tempmax, tempmin, hummax, hummin);
             error = false;
            }
        else
